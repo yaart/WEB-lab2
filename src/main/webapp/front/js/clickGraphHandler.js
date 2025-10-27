@@ -14,7 +14,6 @@ canvas.addEventListener('click', function (e) {
 
     var { x, y } = getCanvasCoords(xClick, yClick, r);
 
-
     x = Math.round(x * 2) / 2;
     x = x.toFixed(1);
     y = y.toFixed(3);

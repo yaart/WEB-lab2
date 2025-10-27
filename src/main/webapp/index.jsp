@@ -16,6 +16,7 @@
 </head>
 <body>
 <%
+    // Логика восстановления сессии
     UserValueBean lastValues = (UserValueBean) session.getAttribute("lastUserValues");
 
     String lastX = (lastValues != null) ? String.format("%.1f", lastValues.getX()).replace(',', '.') : "";
@@ -43,16 +44,13 @@
                 <button type="button" onclick="setX(1.5, this)">1.5</button>
                 <button type="button" onclick="setX(2, this)">2</button>
             </div>
-            <%-- ✨ ШАГ 3: УСТАНОВИТЬ ЗНАЧЕНИЕ ДЛЯ СКРЫТОГО ПОЛЯ X --%>
             <input type="hidden" id="xvalue" name="xvalue" required value="<%= lastX %>">
 
             <label>Введите Y:
-                <%-- ✨ ШАГ 4: УСТАНОВИТЬ ЗНАЧЕНИЕ ДЛЯ ПОЛЯ Y --%>
                 <input type="text" name="yvalue" id="yvalue" placeholder="от -5 до 5" value="<%= lastY %>">
             </label> <br>
             <label>Введите R:
-                <%-- ✨ ШАГ 5: УСТАНОВИТЬ ЗНАЧЕНИЕ ДЛЯ ПОЛЯ R --%>
-                <input type="text" name="rvalue" id="rvalue" placeholder="от 2 до 5" value="<%= lastR %>">
+                <input type="text" name="rvalue" id="rvalue" placeholder="от 2 до 5" value="<%= lastR %>" oninput="handleRChange()">
             </label> <br>
             <input type="submit" value="Отправить">
         </form>
@@ -136,21 +134,6 @@
 <script src="front/js/graph.js"></script>
 <script src="front/js/clickGraphHandler.js"></script>
 <script src="front/js/drawDots.js"></script>
-<%-- ✨ ШАГ 6: СКРИПТ ДЛЯ АВТОВЫБОРА КНОПКИ X --%>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const lastXValue = document.getElementById('xvalue').value;
-        if (lastXValue) {
-            // Ищем кнопку, соответствующую сохраненному значению
-            const selectedButton = Array.from(document.querySelectorAll('.x-buttons button'))
-                .find(button => button.textContent.trim() === lastXValue);
-
-            // Вызываем setX для выделения кнопки (функция setX должна быть определена ранее)
-            if (selectedButton) {
-                setX(parseFloat(lastXValue), selectedButton);
-            }
-        }
-    });
-</script>
+<script src="front/js/init.js"></script>
 </body>
 </html>
