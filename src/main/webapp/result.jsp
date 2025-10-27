@@ -6,8 +6,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+    <link rel="stylesheet" href="front/css/style.css">
+    <link rel="icon" type="image/x-icon" href="front/images/favicon.ico">
     <title>Magic</title>
 </head>
 <body>
